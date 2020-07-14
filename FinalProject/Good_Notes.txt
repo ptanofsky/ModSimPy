@@ -1,0 +1,110 @@
+game_stats_state = State(turnovers=0,
+                             two_point_field_goal_attempts=0,
+                             two_point_field_goal_makes=0,
+                             three_point_field_goal_attempts=0,
+                             three_point_field_goal_makes=0,
+                             free_throw_attempts=0,
+                             free_throw_makes=0,
+                             shooting_fouls_drawn=0,
+                             offensive_rebounds=0)
+
+X = Opp team Defensive Rating - SA Offensive Rating
+= Formula would determine the amount to add to SA FG% pct based on opponent
+0.00212*x + 0.00439
+
+0.00368*x + 0.00782
+
+FG%
+With correct data for full season minus the teams with mismatched acronyms
+0.00355*x + -0.00505
+
+
+3P FG%
+0.00463*x + -0.00847
+
+Turnovers
+Higher difference means offensive outplayed defense, so I would expect TO count to go down (trendline)
+-0.0993*x + -0.478
+
+Divide 100, as this should be per possession
+-0.000993*x + -0.00478
+
+calculate_3p_fg_pct_based_on_opp
+
+Milwaukee def rating = 101.6
+SA Offensive Rating = 111.3
+
+
+	values
+turnover_pct_per_play	0.137
+fga_pct_per_play	0.767
+off_reb_per_play	0.084
+two_pt_fg_attempts_pct	0.602
+two_pt_fg_shooting_pct	0.525
+three_pt_fg_shooting_pct	33.300
+ft_shooting_pct	79.000
+shooting_foul_drawn_pct	0.178
+pace	103.280
+off_rating	107.000
+def_rating	114.400
+
+
+
+calculate_fg_pct_based_on_opp(team_off_rating, opp_def_rating, team_fg_pct):
+
+
+
+
+    game_stats_state = State(turnovers=0,
+                             two_point_field_goal_attempts=0,
+                             two_point_field_goal_makes=0,
+                             three_point_field_goal_attempts=0,
+                             three_point_field_goal_makes=0,
+                             free_throw_attempts=0,
+                             free_throw_makes=0,
+                             shooting_fouls_drawn=0,
+                             offensive_rebounds=0)
+
+
+https://stats.nba.com/teams/advanced/?sort=TEAM_NAME&dir=-1
+https://www.basketball-reference.com/leagues/NBA_2020.html#all_team-stats-base
+
+
+coffee = make_system(T_init=90, r=r_coffee, volume=300, t_end=30)
+coffee.temp
+
+milk = make_system(T_init=5, r=r_milk, volume=50, t_end=30)
+milk.temp
+
+coffee_results = run_and_set(coffee)
+coffee.temp
+
+milk_results = run_and_set(milk)
+milk.temp
+
+plot(coffee_results.T, label='coffee')
+plot(milk_results.T, '--', label='milk')
+
+decorate(xlabel='Time (minutes)',
+         ylabel='Temperature (C)',
+         loc='center left')
+
+savefig('figs/chap16-fig11.pdf')
+
+
+sweep = SweepSeries()
+for t_add in linspace(0, 30, 11):
+    sweep[t_add] = run_and_mix(t_add, 30)
+
+plot(sweep, label='final temp', color='C2')
+decorate(xlabel='Time added (min)',
+         ylabel='Final temperature (C)')
+
+savefig('figs/chap16-fig12.pdf')
+
+
+
+
+
+
+
